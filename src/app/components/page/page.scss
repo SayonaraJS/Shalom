@@ -1,0 +1,16 @@
+.c-page {
+
+  @include element('title') {
+
+  }
+
+  @include element('content') {
+
+  }
+
+  @include element('entry-link') {
+    color: $links;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}

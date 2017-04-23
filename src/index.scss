@@ -1,6 +1,3 @@
-/* Import our fonts (from google Fonts) */
-@import url('https://fonts.googleapis.com/css?family=Indie+Flower|Roboto:300');
-
 /* Import global styles */
 @import 'styles/variables';
 @import 'styles/mediaQuery';
@@ -9,7 +6,7 @@
 @import 'styles/quill';
 
 /* Import module styles */
-@import 'app/components/main/main';
+@import 'app/components/page/page';
 @import 'app/components/entry/entry';
 
 /* Global general styles */
@@ -22,7 +19,6 @@ html {
 }
 
 * {
-    font-family: 'Roboto', sans-serif;
 }
 
 img {

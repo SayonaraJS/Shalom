@@ -2,9 +2,17 @@
   <h2 class="c-page__title">
     {{$ctrl.getPage().title}}
   </h2>
-
   <div class="c-page__content"
     ng-if="$ctrl.getPage().content"
     ng-bind-html="$ctrl.$sce.trustAsHtml($ctrl.getPage().content)">
+  </div>
+
+  <!-- List Entries in Entry Type -->
+  <div ng-repeat="entryType in $ctrl.getPage().entryTypes">
+    <div ng-repeat="entry in entryType.entries | orderBy: ['order', '-date']"
+      ng-click="$ctrl.goToEntry(entry)"
+      class="c-page__entry-link">
+      {{entry.title}}
+    </div>
   </div>
 </div>

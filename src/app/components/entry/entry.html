@@ -11,7 +11,7 @@
       ng-if="$ctrl.entryHelper.isImage($ctrl.entry)">
       <!-- Image -->
       <a href="{{$ctrl.entryHelper.getEmbed($ctrl.entry)}}">
-        <img class="c-main__entry__image-container__image"
+        <img class="c-entry__image-container__image"
         alt="{{$ctrl.entry.title}}"
         ng-src="{{$ctrl.entryHelper.getEmbed($ctrl.entry)}}" />
       </a>
@@ -46,9 +46,9 @@
     $ctrl.entry.categories &&
     $ctrl.entry.categories.length > 0">
     Categories:
-    <div class="c-main__categories-flex">
+    <div class="c-entry__categories-flex">
       <div ng-repeat="category in $ctrl.entry.categories"
-        class="c-main__categories-flex__category--no-hover">
+        class="c-entry__categories-flex__category--no-hover">
         {{category.title}}
       </div>
     </div>
