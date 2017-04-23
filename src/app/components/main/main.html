@@ -1,0 +1,47 @@
+<div class="c-main">
+
+  <!-- Show our categories, if we have them -->
+  <h3 class="c-main__categories-title">
+    Filter by category:
+  </h3>
+  <div class="c-main__categories-flex">
+    <!-- Get our categories list, and repeat through -->
+    <div ng-repeat="category in $ctrl.totalCategories"
+      class="c-main__categories-flex__category"
+      ng-click="$ctrl.categoryClick(category)"
+      ng-class="{'c-main__categories-flex__category--current':
+      $ctrl.currentCategory === category}">
+      {{category}}
+    </div>
+  </div>
+
+  <!-- Organize our entries in blocks from the first page -->
+  <!-- Added some awesome animation staggering in style -->
+  <!-- Not using ng-repeat filter because I am tried at 2am -->
+  <div class="c-main__entry-flex">
+    <div class="c-main__entry animated fadeInUp"
+      ng-repeat="entry in $ctrl.sayonaraSite.pages[0].entryTypes[0].entries |
+      orderBy: ['order', '-date']"
+      ng-if="$ctrl.entryCategoryFilter(entry)"
+      style="animation-delay: {{ (0.15 * ($index + 1)) + 's' }}">
+      <!-- Background Image -->
+      <img class="c-main__entry__image"
+      alt="{{entry.title}}"
+      ng-src="{{$ctrl.entryHelper.getEntryImageSource(entry)}}" />
+
+      <!-- Play button Overlay -->
+      <img class="c-main__entry__image--play-button"
+      alt="Play Button"
+      ng-if="$ctrl.entryHelper.isVideo(entry)"
+      src="{{$ctrl.playButtonImage}}" />
+
+      <!-- Overlay on hover -->
+      <div class="c-main__entry__overlay"
+      ng-click="$ctrl.goToEntry(entry)">
+        <h3 class="c-main__entry__overlay__title">
+          {{entry.title}}
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>

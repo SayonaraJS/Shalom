@@ -1,0 +1,48 @@
+/* Import our fonts (from google Fonts) */
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower|Roboto:300');
+
+/* Import global styles */
+@import 'styles/variables';
+@import 'styles/mediaQuery';
+@import 'styles/bem';
+@import 'styles/animate';
+@import 'styles/quill';
+
+/* Import module styles */
+@import 'app/components/main/main';
+@import 'app/components/entry/entry';
+
+/* Global general styles */
+body {
+  margin: 0px;
+}
+
+html {
+  background-color: $inverse;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+img {
+  max-width: 100%;
+}
+
+.app-page-content {
+
+}
+
+.app-container {
+  margin-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+/* Import Nav bar, to allow extending the container */
+@import 'modules/navbar/navbar';

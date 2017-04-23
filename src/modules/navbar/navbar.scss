@@ -1,0 +1,259 @@
+.always-show {
+  @include all-mobile() {
+    display: block !important;
+  }
+
+  @include not-mobile() {
+    display: block !important;
+  }
+}
+
+.always-hide {
+  @include all-mobile() {
+    display: none !important;
+  }
+
+  @include not-mobile() {
+    display: none !important;
+  }
+}
+
+.angular-navbar {
+  width: 100%;
+  background-color: $navbar;
+  color: $standard;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  min-height: 55px;
+  z-index: 10;
+
+  @extend .app-container;
+
+  //Desktop Top Nav
+
+  @include element('desktop') {
+    display: flex;
+    justify-content: space-between;
+
+    //Hide on mobile
+    @include all-mobile() {
+      display: none;
+    }
+
+    //If always show
+    @include modifier('always-show') {
+      @extend .always-show;
+    }
+
+    //If Always hide
+    @include modifier('always-hide') {
+      @extend .always-hide;
+    }
+
+    @include element('title') {
+      display: inline-block;
+      font-size: 1.5em;
+      font-family: 'Indie Flower', cursive, Arial, Helvetica, sans-serif;
+
+      @include modifier('route') {
+        display: inline-block;
+        font-size: 1.5em;
+        cursor: pointer;
+        font-family: 'Indie Flower', cursive, Arial, Helvetica, sans-serif;
+        top: 0px;
+        transition: top 0.45s;
+
+        &:hover {
+          position: relative;
+          top: -3px;
+        }
+      }
+    }
+
+    @include element('list') {
+
+      padding-left: 0px;
+      /* Remove Bullets */
+      list-style-type: none;
+      margin-left: auto;
+      display: inline-block;
+
+      @include element('item') {
+        font-size: 1.25em;
+        cursor: pointer;
+        display: inline-block;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding-left: 0px;
+        text-align: right;
+        font-family: 'Indie Flower', cursive, Arial, Helvetica, sans-serif;
+        top: 0px;
+        transition: top 0.25s;
+
+        &::before {
+          display: none;
+        }
+
+        &:hover {
+          position: relative;
+          top: -2px;
+        }
+
+
+        //Underline when the route is active
+        @include modifier('active') {
+          border-bottom: solid 2px $standard;
+        }
+      }
+    }
+  }
+
+  //Mobile Sidenav
+  @include element('mobile') {
+
+    //Hide on desktop
+    @include not-mobile() {
+      display: none;
+    }
+
+    //If always show
+    @include modifier('always-show') {
+      @extend .always-show;
+    }
+
+    //If Always hide
+    @include modifier('always-hide') {
+      @extend .always-hide;
+    }
+
+    //Hamburger menu
+    @include element('hamburger') {
+      position: absolute;
+      top: 7px;
+      left: 10px;
+      border: solid 2px $standard;
+      border-radius: 5px;
+      cursor: pointer;
+
+      padding-top: 5px;
+      padding-left: 5px;
+      padding-right: 5px;
+      padding-bottom: 10px;
+
+      @include element('bar') {
+        border-bottom: solid 2px $standard;
+        height: 5px;
+        width: 30px;
+      }
+
+      @include modifier('nav-active') {
+
+      }
+    }
+
+    @include element('title') {
+      position: absolute;
+      top: 12px;
+      left: 65px;
+      display: inline-block;
+      font-size: 1.5em;
+      font-family: 'Indie Flower', cursive, Arial, Helvetica, sans-serif;
+
+      @include modifier('route') {
+        position: absolute;
+        top: 12px;
+        left: 65px;
+        display: inline-block;
+        font-size: 1.5em;
+        cursor: pointer;
+        font-family: 'Indie Flower', cursive, Arial, Helvetica, sans-serif;
+      }
+    }
+
+    //Semi Transparent overlay behind sidenav
+    @include element('shade') {
+      visibility: hidden;
+      position: fixed;
+      z-index: -9999;
+      background-color: $standard;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+
+      //Cover the entire screen
+      min-width: 110%;
+      min-height: 102%;
+      margin-left: -5%;
+      margin-top: -1%;
+
+      @include modifier('nav-active') {
+        visibility: visible;
+        opacity: 0.5;
+        z-index: 10;
+      }
+    }
+
+    @include element('sidenav') {
+
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      margin-left: -500px;
+      transition: margin-left 0.5s ease-in-out;
+      min-height: 100%;
+      min-width: 275px;
+      max-width: 275px;
+      background-color: $navbar;
+      padding: 10px;
+      z-index: 12;
+
+      //Show the navbar
+      @include modifier('nav-active') {
+        margin-left: 0px;
+      }
+
+      @include element('title') {
+        font-size: 1.75em;
+        display: block;
+        top: 20px;
+        left: 10px;
+        font-family: 'Indie Flower', cursive, Arial, Helvetica, sans-serif;
+
+        @include modifier('route') {
+          font-size: 1.75em;
+          cursor: pointer;
+          font-family: 'Indie Flower', cursive, Arial, Helvetica, sans-serif;
+        }
+      }
+
+      @include element('list') {
+
+        padding-left: 0px;
+        /* Remove Bullets */
+        list-style-type: none;
+        margin-top: 0px;
+        padding-left: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        display: block;
+
+        @include element('item') {
+          font-size: 1.5em;
+          cursor: pointer;
+          display: block;
+          padding-left: 0px;
+          font-family: 'Indie Flower', cursive, Arial, Helvetica, sans-serif;
+          &::before {
+            display: none;
+          }
+
+          //Underline when the route is active
+          @include modifier('active') {
+            display: block;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,98 @@
+<div class="angular-navbar animated fadeIn">
+  <!-- Desktop Horizontal Navbar -->
+  <div class="angular-navbar__desktop"
+    ng-class="{'angular-navbar__desktop--always-show':
+      $ctrl.navbarRouteService.alwaysDesktop,
+      'angular-navbar__desktop--always-hide':
+        $ctrl.navbarRouteService.alwaysMobile}">
+    <!-- Title -->
+    <div ng-if="$ctrl.navbarRouteService.title &&
+      !$ctrl.navbarRouteService.titleRoute"
+      class="angular-navbar__desktop__title">
+      {{$ctrl.navbarRouteService.title}}
+    </div>
+
+    <!-- Title Route -->
+    <div ng-if="$ctrl.navbarRouteService.titleRoute"
+      class="angular-navbar__desktop__title--route"
+      ng-click="$ctrl.goToState($ctrl.navbarRouteService.titleRoute)">
+      {{$ctrl.navbarRouteService.title}}
+    </div>
+
+    <ul class="angular-navbar__desktop__list">
+      <li ng-repeat="route in $ctrl.navbarRouteService.getRoutes()"
+        ng-click="$ctrl.goToState(route)"
+        class="angular-navbar__desktop__list__item"
+        ng-class="{'angular-navbar__desktop__list__item--active': $ctrl.isActive(route)}">
+        {{route.title}}
+      </li>
+    </ul>
+  </div>
+
+  <!-- Mobile Sidenav bar -->
+  <div class="angular-navbar__mobile"
+  ng-class="{'angular-navbar__mobile--always-show':
+    $ctrl.navbarRouteService.alwaysMobile,
+    'angular-navbar__mobile--always-hide':
+      $ctrl.navbarRouteService.alwaysDesktop}">
+
+    <!-- Hamburger menu button -->
+    <div class="angular-navbar__mobile__hamburger"
+      ng-click="$ctrl.showNav = true">
+      <div class="angular-navbar__mobile__hamburger__bar">
+      </div>
+      <div class="angular-navbar__mobile__hamburger__bar">
+      </div>
+      <div class="angular-navbar__mobile__hamburger__bar">
+      </div>
+    </div>
+
+    <!-- Title -->
+    <div ng-if="$ctrl.navbarRouteService.title &&
+      !$ctrl.navbarRouteService.titleRoute"
+      class="angular-navbar__mobile__title">
+      {{$ctrl.navbarRouteService.title}}
+    </div>
+
+    <!-- Title Route -->
+    <div ng-if="$ctrl.navbarRouteService.titleRoute"
+      class="angular-navbar__mobile__title--route"
+      ng-click="$ctrl.goToState($ctrl.navbarRouteService.titleRoute)">
+      {{$ctrl.navbarRouteService.title}}
+    </div>
+
+    <!-- Semi Transparent background -->
+    <div class="angular-navbar__mobile__shade"
+      ng-class="{'angular-navbar__mobile__shade--nav-active': $ctrl.showNav}"
+      ng-click="$ctrl.showNav = false">
+    </div>
+
+    <!-- Sidenav that slides in -->
+    <div class="angular-navbar__mobile__sidenav"
+      ng-class="{'angular-navbar__mobile__sidenav--nav-active': $ctrl.showNav}">
+
+      <!-- Title -->
+      <div ng-if="$ctrl.navbarRouteService.title &&
+        !$ctrl.navbarRouteService.titleRoute"
+        class="angular-navbar__mobile__sidenav__title">
+        {{$ctrl.navbarRouteService.title}}
+      </div>
+
+      <!-- Title Route -->
+      <div ng-if="$ctrl.navbarRouteService.titleRoute"
+        class="angular-navbar__mobile__sidenav__title--route"
+        ng-click="$ctrl.goToState($ctrl.navbarRouteService.titleRoute)">
+        {{$ctrl.navbarRouteService.title}}
+      </div>
+
+      <ul class="angular-navbar__mobile__sidenav__list">
+        <li ng-repeat="route in $ctrl.navbarRouteService.getRoutes()"
+          ng-click="$ctrl.goToState(route)"
+          class="angular-navbar__mobile__sidenav__list__item"
+          ng-class="{'angular-navbar__mobile__sidenav__list__item--active': $ctrl.isActive(route)}">
+          {{route.title}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

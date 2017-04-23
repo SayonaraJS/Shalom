@@ -1,0 +1,66 @@
+.c-entry {
+
+  @include element('page-content') {
+    margin-bottom: 20px;
+  }
+
+
+  @include element('entry') {
+
+    @include element('title-container') {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+
+      @include element('title') {
+        display: inline-block;
+        color: $standard;
+        transition: all 0.5s;
+        margin-bottom: 10px;
+      }
+    }
+
+    @include element('image-container') {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+      @include element('image') {
+        max-width: 100%;
+      }
+    }
+
+    @include element('iframe-container') {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+      @include element('iframe') {
+        max-width: 100%;
+      }
+    }
+
+    @include element('content') {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @include element('date') {
+      margin-top: 10px;
+      text-align: right;
+    }
+
+    @include element('category-container') {
+      margin-top: 25px;
+      margin-bottom: -10px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+  }
+}

@@ -1,0 +1,56 @@
+<div class="c-entry">
+    <!-- Entry Title -->
+    <div class="c-entry__entry__title-container animated fadeIn">
+      <h1 class="c-entry__entry__title-container__title">
+        {{$ctrl.entry.title}}
+      </h1>
+    </div>
+
+    <!-- Entry Image -->
+    <div class="c-entry__entry__image-container animated fadeIn"
+      ng-if="$ctrl.entryHelper.isImage($ctrl.entry)">
+      <!-- Image -->
+      <a href="{{$ctrl.entryHelper.getEmbed($ctrl.entry)}}">
+        <img class="c-main__entry__image-container__image"
+        alt="{{$ctrl.entry.title}}"
+        ng-src="{{$ctrl.entryHelper.getEmbed($ctrl.entry)}}" />
+      </a>
+    </div>
+
+    <!-- Entry Video -->
+    <div class="c-entry__entry__iframe-container animated fadeIn"
+      ng-if="$ctrl.entryHelper.isVideo($ctrl.entry)">
+      <iframe width="560"
+      height="315"
+      class="c-entry__entry__iframe-container__iframe"
+      ng-src="{{$ctrl.getTrustedEmbed()}}"
+      frameborder="0"
+      allowfullscreen>
+      </iframe>
+    </div>
+
+    <!-- Entry Content -->
+    <div class="c-entry__entry__content animated fadeInUp"
+      ng-bind-html="$ctrl.$sce.trustAsHtml($ctrl.entry.content)">
+    </div>
+
+    <!-- Omitting Dates for now, want Leah to be able to just mention it
+    <div class="c-entry__entry__date">
+      {{$ctrl.entry.date | date:'longDate'}}
+    </div>
+    -->
+
+    <!-- List our categories is nice little tag looking thingys -->
+    <div class="c-entry__entry__category-container"
+    ng-if="$ctrl.entry &&
+    $ctrl.entry.categories &&
+    $ctrl.entry.categories.length > 0">
+    Categories:
+    <div class="c-main__categories-flex">
+      <div ng-repeat="category in $ctrl.entry.categories"
+        class="c-main__categories-flex__category--no-hover">
+        {{category.title}}
+      </div>
+    </div>
+  </div>
+</div>
